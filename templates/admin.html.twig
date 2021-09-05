@@ -1,0 +1,53 @@
+{% block stylesheets%}
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; width: 90%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><b>Majoo Teknologi Indonesia</b></a>
+        <form class="form-inline">
+        <span class="navbar-text">
+        <center><p style="font-size:10pt">Hi Admin! <a href="/logout">Logout</a></p></center>
+        </span>
+        </form>
+    </nav>
+    <div class="example-wrapper">
+        <h5><b>Edit Produk</b></h5>
+        <div class="row">
+            {% for item in items %}
+                <div clas="col-xs-6 col-sm-3 col-lg-3" style="margin:20px">
+                    <div class="card" style="width: 17rem;">
+                        <img class="card-img-top" src="{{ asset('img/uploads/') }}{{item.image}}" alt="Card image cap">
+                        <div class="card-body">
+                            <center><h5 class="card-title">{{item.name}}</h5></center>
+                            <center><h5 class="card-title">Rp. <b>{{ item.price|number_format(2, ',', '.') }}</b></h5></center>
+                            <p style="text-align:justify;font-size:8pt">{{item.description}}</p>
+                            <center><a href="#" onClick="MyWindow=window.open('/edit/id/{{item.id}}','Edit','width=500,height=550'); return false;" class="btn btn-secondary">Edit</a>
+                        <a href="#" onClick="var x = confirm ('Apakah anda yakin ingin menghapus data ini?'); if(x) {MyWindow=window.open('/delete_process/{{item.id}}','Delete','width=1,height=1'); return false;}" class="btn btn-danger">Delete</a></center>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div clas="col-xs-6 col-sm-3 col-lg-3" style="margin:20px">
+                <div class="card" style="width: 17rem;">
+                    <div class="card-body">
+                        <center><h5 class="card-title"><b>Tambah Produk +</b></h5></center>
+                        <p style="text-align:center;font-size:10pt">Klik tambah produk untuk menambahkan jenis produk</p>
+                        <center><a href="#" class="btn btn-primary" onClick="MyWindow=window.open('/add','Add','width=500,height=550'); return false;">Tambah</a></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand">
+    <center><p style="font-size:10pt">2021 © PT Majoo Teknologi Indonesia</p></center>
+    </a>
+    </nav>
+{% endblock %}

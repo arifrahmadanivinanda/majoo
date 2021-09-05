@@ -1,0 +1,28 @@
+{% block stylesheets%}
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/CopySchedule/copyschedule.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; width: 20%; font: 18px/1.5 sans-serif; margin-top:50px}
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><b>Majoo Teknologi Indonesia</b></a>
+    </nav>
+    <div class="example-wrapper" style="text-align:right">
+    <form action="{{path('auth')}}" method="post" id="scheduleForm">
+        <h5><b><center>Admin Area</center></b></h5>
+        <div class="row">
+            <input type="text" name="username" class="form-control" style="margin:5px" placeholder="username" required>
+            <input type="password" name="password" class="form-control" style="margin:5px" placeholder="password" required>
+            <button class="btn btn-primary" type="submit" style="margin:5px">Login</button>
+            <br>
+        </div>
+        <p style="color:red;font-size:8pt;">{{alert}}</p>
+    </form>
+    </div>
+{% endblock %}

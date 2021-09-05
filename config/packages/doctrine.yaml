@@ -1,0 +1,53 @@
+parameters:
+    env(DATABASE_URL): ""
+
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver: pdo_mysql
+                charset: utf8
+                persistent: false
+                default_table_options:
+                    charset: utf8
+                    collate: utf8_unicode_ci
+                url: "%env(resolve:DATABASE_URL)%"
+                mapping_types:
+                    enum: string
+            majoo:
+                driver: pdo_mysql
+                charset: utf8
+                persistent: false
+                default_table_options:
+                    charset: utf8
+                    collate: utf8_unicode_ci
+                url: "%env(resolve:DATABASE_URL)%"
+                mapping_types:
+                    enum: string
+
+    orm:
+        #auto_generate_proxy_classes: true
+        #naming_strategy: doctrine.orm.naming_strategy.underscore
+        #auto_mapping: true
+        auto_generate_proxy_classes: "%kernel.debug%"
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    App:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity'
+                        prefix: 'App\Entity'
+                        alias: App
+            majoo:
+                connection: majoo
+                mappings:
+                    App:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity'
+                        prefix: 'App\Entity'
+                        alias: App
